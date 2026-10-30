@@ -1,53 +1,106 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "TruHuddle Docs",
+  "description": "Learn to publish with TruHuddle, customize your organization’s blog, connect a custom domain, use AI and voice, and integrate the read-only blog API.",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0287fd",
+    "light": "#38a3ff",
+    "dark": "#0272d8"
   },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
+  "appearance": {
+    "default": "system",
+    "strict": false
+  },
+  "background": {
+    "color": {
+      "light": "#ffffff",
+      "dark": "#171717"
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle.avif",
+    "dark": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle.avif",
+    "href": "https://truhuddle.com"
+  },
+  "favicon": "/images/favicon.png",
+  "fonts": {
+    "family": "League Spartan",
+    "weight": 300,
+    "heading": {
+      "family": "League Spartan",
+      "weight": 400
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "index",
+              "quickstart",
+              "guides/plans-and-credits"
+            ]
+          },
+          {
+            "group": "Your publication",
+            "pages": [
+              "guides/writing-and-publishing",
+              "guides/blog-settings",
+              "guides/ai-and-voice",
+              "guides/authors-and-analytics"
+            ]
+          },
+          {
+            "group": "Domains and SEO",
+            "pages": [
+              "domains/connect-a-domain",
+              "domains/cloudflare-worker",
+              "domains/search-and-seo"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "help/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Read-only API",
+            "pages": [
+              "api-reference/authentication",
+              "api-reference/articles",
+              "api-reference/categories-and-authors",
+              "api-reference/errors-and-pagination"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "href": "https://truhuddle.com/contact"
+      },
+      {
+        "label": "Pricing",
+        "href": "https://truhuddle.com/pricing"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Open workspace",
+      "href": "https://app.truhuddle.com"
     }
   },
   "contextual": {
@@ -56,17 +109,40 @@
       "view",
       "chatgpt",
       "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+      "perplexity"
     ]
+  },
+  "search": {
+    "prompt": "Search TruHuddle documentation..."
+  },
+  "seo": {
+    "indexing": "navigable",
+    "metatags": {
+      "og:site_name": "TruHuddle Docs",
+      "og:locale": "en_US",
+      "og:image": "https://truhuddle.com/og-image.jpg",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@truhuddle",
+      "twitter:image": "https://truhuddle.com/og-image.jpg"
+    },
+    "organization": {
+      "id": "https://truhuddle.com/#organization",
+      "name": "TruHuddle",
+      "legalName": "Retina Labs Company",
+      "url": "https://truhuddle.com",
+      "logo": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle.avif",
+      "sameAs": [
+        "https://x.com/truhuddle",
+        "https://linkedin.com/company/truhuddle",
+        "https://instagram.com/truhuddle"
+      ]
+    }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/truhuddle",
+      "linkedin": "https://linkedin.com/company/truhuddle",
+      "instagram": "https://instagram.com/truhuddle"
     }
   }
 }

@@ -1,0 +1,4 @@
+/* Keep documentation typography close to the application. */
+body { font-weight: 300; }
+h1, h2, h3, h4 { font-weight: 400; }
+strong, b { font-weight: 500; }

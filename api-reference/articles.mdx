@@ -1,0 +1,92 @@
+---
+title: "Retrieve published blog posts"
+description: "Read blog settings and published articles through the workspace API, filter lists by category, author or search, and retrieve Markdown by post slug."
+keywords: ["posts API","Markdown","pagination"]
+---
+
+The TruHuddle API returns published content for the workspace identified by your credentials. Use article slugs from list responses for detail requests.
+
+## GET `/api/v1`
+
+Lists the supported resources and API version.
+
+## GET `/api/v1/blog`
+
+Publication name, URL, SEO title/description, logo and favicon.
+
+## GET `/api/v1/posts?page=1&limit=15`
+
+Published article summaries, newest first. Optional filters: `category` slug, `author` slug and `search` text of up to 100 characters. Filters can be combined.
+
+```bash
+curl 'https://app.truhuddle.com/api/v1/posts?category=product-updates&page=1&limit=15' \
+  -H 'X-Public-Key: pk_live_REPLACE_WITH_YOUR_PUBLIC_KEY' \
+  -H 'Authorization: Bearer sk_live_REPLACE_WITH_YOUR_SECRET_KEY'
+```
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "title": "Our latest update",
+      "slug": "our-latest-update",
+      "excerpt": "Here is what we have been working on.",
+      "createdAt": "2026-01-15T10:00:00.000Z",
+      "updatedAt": "2026-01-15T10:00:00.000Z",
+      "imageUrl": null,
+      "category": {
+        "name": "Product updates",
+        "slug": "product-updates"
+      },
+      "url": "https://blog.company.com/article/our-latest-update"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 15,
+    "total": 1,
+    "totalPages": 1,
+    "hasMore": false
+  }
+}
+```
+
+## GET `/api/v1/posts/our-latest-update`
+
+One published article, including Markdown `content`, `format`, summary, category, public author and SEO fields. Use the slug from the list response.
+
+```json
+{
+  "success": true,
+  "data": {
+    "title": "Our latest update",
+    "slug": "our-latest-update",
+    "url": "https://blog.company.com/article/our-latest-update",
+    "content": "# Welcome\n\nOur first update.",
+    "format": "markdown",
+    "excerpt": "Welcome Our first update.",
+    "createdAt": "2026-01-15T10:00:00.000Z",
+    "updatedAt": "2026-01-15T10:00:00.000Z",
+    "category": {
+      "name": "Product updates",
+      "slug": "product-updates"
+    },
+    "author": {
+      "name": "Alex Morgan",
+      "slug": "alex-morgan",
+      "avatarUrl": null,
+      "jobTitle": "Product Lead",
+      "about": "Writing about our products.",
+      "role": "Member"
+    },
+    "seo": {
+      "title": "Our latest update",
+      "description": "Our first update.",
+      "imageUrl": null
+    }
+  }
+}
+```
+
+Render Markdown using a sanitizer appropriate for your application. Do not inject the content into raw HTML. API requests cannot create, edit, publish or delete articles; use the dashboard for those actions.

@@ -1,0 +1,45 @@
+---
+title: "Authenticate with the read-only blog API"
+description: "Use your Enterprise workspace public and secret keys to authenticate server-side requests for published blog content without exposing private account data."
+keywords: ["API","authentication","Enterprise"]
+---
+
+The read-only API requires an active **Enterprise** workspace. An Owner or Admin opens Developer Settings and generates credentials. The public key identifies the workspace; the secret is downloaded once. Rotating credentials invalidates the old pair immediately.
+
+Send the public key in `X-Public-Key` and the secret in `Authorization: Bearer …`. There is no separate token-generation step. Make calls from your server; never embed the secret in browser JavaScript, a URL, analytics or a public repository. The examples contain placeholders, not usable credentials.
+
+```bash
+curl 'https://app.truhuddle.com/api/v1/blog' \
+  -H 'X-Public-Key: pk_live_REPLACE_WITH_YOUR_PUBLIC_KEY' \
+  -H 'Authorization: Bearer sk_live_REPLACE_WITH_YOUR_SECRET_KEY'
+```
+
+```json
+{
+  "success": true,
+  "data": {
+    "name": "Company Blog",
+    "url": "https://blog.company.com",
+    "title": "Company Blog",
+    "description": "Updates from our team.",
+    "logoUrl": null,
+    "faviconUrl": null
+  }
+}
+```
+
+```javascript
+// Server-side JavaScript only. Keep these values in your server environment.
+const response = await fetch("https://app.truhuddle.com/api/v1/posts?limit=15", {
+  headers: {
+    "X-Public-Key": process.env.SDK_PUBLIC_KEY,
+    Authorization: `Bearer ${process.env.SDK_SECRET_KEY}`,
+  },
+  cache: "no-store",
+});
+const result = await response.json();
+if (!response.ok) throw new Error(result.error || "Unable to load articles");
+console.log(result.data);
+```
+
+Credentials determine the workspace. You cannot select a different workspace with a query parameter. These endpoints expose published blog content and public author fields only; drafts, member lists, private contact messages, billing and credentials are excluded.

@@ -1,0 +1,49 @@
+---
+title: "Retrieve categories and public authors"
+description: "Read categories and public author profiles with article counts, then use their slugs to filter published posts within your authenticated workspace."
+keywords: ["categories API","authors API","slugs"]
+---
+
+Categories and public authors help you organize and retrieve your publication’s articles. All API responses stay within your authenticated workspace.
+
+## GET `/api/v1/categories?page=1&limit=15`
+
+Categories with published articles. Each item includes `name`, `slug` and `articleCount`.
+
+## GET `/api/v1/categories/product-updates`
+
+A single public category. Get its articles with `/api/v1/posts?category=product-updates`.
+
+```json
+{
+  "success": true,
+  "data": {
+    "name": "Product updates",
+    "slug": "product-updates",
+    "articleCount": 12
+  }
+}
+```
+
+## GET `/api/v1/authors?page=1&limit=15`
+
+Public authors with published articles, including name, slug, avatar URL, job title, about, workspace role and article count. Missing optional fields are `null`.
+
+## GET `/api/v1/authors/alex-morgan`
+
+One public author. Get that author’s articles with `/api/v1/posts?author=alex-morgan`. Author resources are unavailable when Show Author is disabled.
+
+```json
+{
+  "success": true,
+  "data": {
+    "name": "Alex Morgan",
+    "slug": "alex-morgan",
+    "avatarUrl": null,
+    "jobTitle": "Product Lead",
+    "about": "Writing about our products.",
+    "role": "Member",
+    "articleCount": 8
+  }
+}
+```

@@ -1,0 +1,30 @@
+---
+title: "Handle API errors, limits and pagination"
+description: "Use supported page sizes, understand read-only API errors and request limits, and handle temporary failures without exposing your workspace credentials."
+keywords: ["API errors","rate limits","pagination"]
+---
+
+TruHuddle uses HTTP status codes and JSON responses to describe API failures. Check the response status before reading the returned data.
+
+List endpoints default to 15 items. Set `limit` from 1 to 50 and `page` from 1 to 999. `pagination` includes the current page, page size, total, total pages and whether more items are available. Single-resource endpoints return one object without pagination. Unsupported or repeated query parameters are rejected.
+
+Each workspace is limited to 120 API reads per minute, with an additional source-IP limit. A 429 response asks you to wait before retrying. Retry transient 5xx responses with a short increasing delay; do not retry invalid credentials or a disabled plan indefinitely.
+
+| Status | Meaning |
+| --- | --- |
+| 400 | Invalid query or pagination. |
+| 401 | Missing, invalid or rotated credentials. |
+| 403 | Enterprise access is inactive or the workspace is suspended. |
+| 404 | Resource not found, unpublished or not public. |
+| 405 | Read-only endpoint: use GET. |
+| 429 | Request limit reached. |
+| 500–503 | Temporarily unable to complete the request. |
+
+```json
+{
+  "success": false,
+  "error": "Valid API credentials are required."
+}
+```
+
+API responses use `Cache-Control: private, no-store`. Internal content caches use resource-specific invalidation. Credential validity, workspace suspension and plan eligibility are checked before cached content is returned. If you cache API responses in your own application, you control when that copy is refreshed.

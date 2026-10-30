@@ -1,55 +1,64 @@
-# Mintlify Starter Kit
+# TruHuddle documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Customer documentation for [TruHuddle](https://truhuddle.com), powered by Mintlify and maintained in [retinaNigeria/docs](https://github.com/retinaNigeria/docs). The application source stays in its own repository.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## Preview locally
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
+Requires Node.js 20.17.0 or newer. Install the CLI once:
 
 ```bash
-npx skills add https://mintlify.com/docs
-```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
 npm i -g mint
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+From this repository:
 
+```bash
+mint dev --port 3002
 ```
-mint dev
+
+Port 3002 avoids the application’s local port 3000. On a Mac where npm’s system global directory is not writable, use a user-owned installation instead of sudo:
+
+```bash
+npm install --global --prefix "$HOME/.local" mint
+"$HOME/.local/bin/mint" dev --port 3002
 ```
 
-View your local preview at `http://localhost:3000`.
+## Update through Git
 
-## Publishing changes
+Edit the relevant .mdx page or docs.json, then check the documentation:
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+```bash
+mint validate
+mint broken-links
+git add .
+git commit -m "Update TruHuddle documentation"
+git push origin main
+```
 
-## Need help?
+In Mintlify, connect the retinaNigeria/docs repository, branch main, and repository root. Once the Mintlify GitHub App is authorized for this repository, pushes to main trigger documentation deployments. This does not require rebuilding or restarting the PM2 application.
 
-### Troubleshooting
+## Branding and SEO
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+docs.json sets the brand blue, unmodified hosted logo, local favicon, League Spartan fonts, light/dark appearance, navigation, social previews and publisher metadata. Each page has its own title, description and keywords. Mintlify generates page canonicals, sitemap and robots metadata from the deployed site URL. Do not set one canonical URL for every page.
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+The intended custom hostname is docs.truhuddle.com. Add it under Mintlify’s domain settings and use the DNS record Mintlify supplies. Its dashboard connection, GitHub authorization and DNS are external setup steps; this commit does not configure them.
+
+## Content
+
+- [index](index.mdx)
+- [quickstart](quickstart.mdx)
+- [guides/plans-and-credits](guides/plans-and-credits.mdx)
+- [guides/writing-and-publishing](guides/writing-and-publishing.mdx)
+- [guides/blog-settings](guides/blog-settings.mdx)
+- [guides/ai-and-voice](guides/ai-and-voice.mdx)
+- [guides/authors-and-analytics](guides/authors-and-analytics.mdx)
+- [domains/connect-a-domain](domains/connect-a-domain.mdx)
+- [domains/cloudflare-worker](domains/cloudflare-worker.mdx)
+- [domains/search-and-seo](domains/search-and-seo.mdx)
+- [api-reference/authentication](api-reference/authentication.mdx)
+- [api-reference/articles](api-reference/articles.mdx)
+- [api-reference/categories-and-authors](api-reference/categories-and-authors.mdx)
+- [api-reference/errors-and-pagination](api-reference/errors-and-pagination.mdx)
+- [help/troubleshooting](help/troubleshooting.mdx)
+
+Keep account secrets and private operational documentation out of this repository. Follow AGENTS.md before editing.

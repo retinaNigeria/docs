@@ -1,0 +1,18 @@
+---
+title: "Connect a custom domain to your blog"
+description: "Verify ownership and route a custom subdomain or an existing website’s blog path to your publication using the records supplied in Blog Settings."
+keywords: ["custom domain","CNAME","verification"]
+---
+
+Connect a custom address from Blog Settings to publish under your organization’s own domain. Use the connection values generated for your workspace.
+
+Each paid workspace can connect **one custom address**: a subdomain such as `blog.company.com`, or your existing website’s `company.com/blog` path. Your free address redirects only after the custom address is verified and active.
+
+1. Open **Blog Settings → Configurations → Custom Domain**.
+2. Select the address type and enter the hostname only. For the path option, enter `company.com`; the form supplies `/blog`. Do not enter a protocol, slash, port or query string.
+3. Add the exact TXT verification name/value shown in the dialog at your DNS provider.
+4. For a subdomain, add the CNAME shown in the dialog. Complete any additional ownership or certificate records the form requests.
+5. For the path option, follow the [Cloudflare Worker instructions](/domains/cloudflare-worker).
+6. Click **Check connection**. Activation requires ownership, correct routing and working HTTPS. DNS and certificate updates can take time; check again after they propagate.
+
+Use the values generated for your workspace. Another workspace’s TXT token or proxy key will not verify your address. Disconnect an existing address before adding a replacement. Expired or suspended subscriptions pause the public site.
