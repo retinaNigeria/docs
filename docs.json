@@ -19,8 +19,8 @@
     }
   },
   "logo": {
-    "light": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle-dark.avif",
-    "dark": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle.avif",
+    "light": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle.avif",
+    "dark": "https://storage.googleapis.com/retina-cloud-v2/assets/images/truhuddle-dark.avif",
     "href": "https://truhuddle.com"
   },
   "favicon": "/images/favicon.png",
