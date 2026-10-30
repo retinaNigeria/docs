@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "TruHuddle Docs",
   "description": "Learn to publish with TruHuddle, customize your organization’s blog, connect a custom domain, use AI and voice, and integrate the read-only blog API.",
   "colors": {
@@ -9,8 +9,8 @@
     "dark": "#0272d8"
   },
   "appearance": {
-    "default": "system",
-    "strict": false
+    "default": "light",
+    "strict": true
   },
   "background": {
     "color": {
